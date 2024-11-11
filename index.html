@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        #noButton {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be mine?</h1>
+        <button class="button" id="yesButton">Yes</button>
+        <button class="button" id="noButton">No</button>
+        <p id="thankYou" style="display:none;">Thank you! 😊</p>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const thankYouMessage = document.getElementById('thankYou');
+
+        noButton.addEventListener('mouseover', () => {
+            noButton.style.top = `${Math.random() * 80}vh`;
+            noButton.style.left = `${Math.random() * 80}vw`;
+        });
+
+        yesButton.addEventListener('click', () => {
+            thankYouMessage.style.display = 'block';
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
