@@ -11,6 +11,7 @@
             align-items: center;
             height: 100vh;
             font-family: Arial, sans-serif;
+            flex-direction: column;
         }
         .container {
             text-align: center;
@@ -24,6 +25,14 @@
         #noButton {
             position: absolute;
         }
+        #yesMessage, #thankYouImage {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+        }
+        img {
+            width: 200px; /* Adjust as needed */
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -31,13 +40,18 @@
         <h1>Will you be mine?</h1>
         <button class="button" id="yesButton">Yes</button>
         <button class="button" id="noButton">No</button>
-        <p id="thankYou" style="display:none;">Thank you! 😊</p>
+        
+        <!-- Message and Image to show after clicking Yes -->
+        <p id="yesMessage">Thank you! You made my day! 😊</p>
+        <img id="thankYouImage" src="images/yourimage.jpg" alt="Happy Image" />
+
     </div>
 
     <script>
         const noButton = document.getElementById('noButton');
         const yesButton = document.getElementById('yesButton');
-        const thankYouMessage = document.getElementById('thankYou');
+        const yesMessage = document.getElementById('yesMessage');
+        const thankYouImage = document.getElementById('thankYouImage');
 
         noButton.addEventListener('mouseover', () => {
             noButton.style.top = `${Math.random() * 80}vh`;
@@ -45,9 +59,10 @@
         });
 
         yesButton.addEventListener('click', () => {
-            thankYouMessage.style.display = 'block';
-            yesButton.style.display = 'none';
-            noButton.style.display = 'none';
+            yesMessage.style.display = 'block';       // Show the message
+            thankYouImage.style.display = 'block';    // Show the image
+            yesButton.style.display = 'none';         // Hide the Yes button
+            noButton.style.display = 'none';          // Hide the No button
         });
     </script>
 </body>
