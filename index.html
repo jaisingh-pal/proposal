@@ -43,7 +43,6 @@
             100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
 
-        /* Container */
         .container {
             position: absolute;
             top: 50%;
@@ -86,8 +85,8 @@
         }
 
         .button {
-            padding: 15px 35px;
-            font-size: 1.4em;
+            padding: 15px 0;
+            font-size: 1.1em;
             font-weight: bold;
             border: none;
             border-radius: 50px;
@@ -97,6 +96,9 @@
             overflow: hidden;
             text-transform: uppercase;
             letter-spacing: 1px;
+            width: 120px;
+            height: 50px;
+            /* Ensure identical size for both buttons */
         }
 
         .button::before {
@@ -118,7 +120,6 @@
             background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             color: white;
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-            width: 120px;
         }
 
         #yesButton:hover {
@@ -133,14 +134,12 @@
             box-shadow: 0 8px 25px rgba(149, 165, 166, 0.4);
             position: absolute;
             transition: all 0.2s ease-out;
-            width: 120px;
         }
 
         #noButton:hover {
             background: linear-gradient(45deg, #7f8c8d, #95a5a6);
         }
 
-        /* Success message */
         .success-content {
             display: none;
             animation: successAppear 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -208,56 +207,45 @@
                 max-width: 90%;
                 padding: 30px 20px;
             }
-            
+
             .question {
                 font-size: 1.8em;
             }
-            
+
             .button {
-                padding: 12px 25px;
-                font-size: 1.2em;
+                padding: 12px 0;
+                font-size: 1.1em;
                 margin: 5px;
+                width: 110px;
+                height: 40px;
             }
-        }
-
-        /* Emoji rain */
-        .emoji {
-            position: absolute;
-            font-size: 25px;
-            animation: emojiRain 4s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes emojiRain {
-            0% { transform: translateY(-100vh); opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
         }
     </style>
 </head>
 <body>
     <!-- Floating hearts background -->
     <div class="hearts-container"></div>
-    
+
     <div class="container">
         <div class="main-content">
-            <h1 class="question">💕 Do you love me? 💕</h1>
-            
+            <h1 class="question">Do you love me?</h1>
             <div class="button-container">
-                <button class="button" id="yesButton">✨ Yes! ✨</button>
-                <button class="button" id="noButton">😔 No</button>
+                <button class="button" id="yesButton">Yes</button>
+                <button class="button" id="noButton">No</button>
             </div>
         </div>
-        
+
         <div class="success-content" id="successContent">
             <div class="success-title">🎉 Love you mere baachi! 🎉</div>
             <div class="success-message">
-                My heart is overflowing with joy! 💓<br>
-                You are my everything and my forever! 🌟<br>
-                <strong>I'm the luckiest person in the world to have your love! 💕</strong>
+                My heart is overflowing with joy!<br>
+                You are my everything and my forever!<br>
+                <strong>I'm the luckiest person in the world to have your love!</strong>
             </div>
             <div style="font-size: 3em; margin: 20px 0; animation: bounce 1s infinite;">
                 😍💖✨🥰💫
             </div>
+            <!-- Image will be injected here after clicking Yes -->
         </div>
     </div>
 
@@ -277,11 +265,9 @@
             heart.style.animationDelay = Math.random() * 2 + 's';
             heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
             document.querySelector('.hearts-container').appendChild(heart);
-            
+
             setTimeout(() => heart.remove(), 7000);
         }
-
-        // Create hearts periodically
         setInterval(createHeart, 800);
 
         // No button evasion
@@ -291,26 +277,25 @@
         function moveNoButton() {
             const container = document.querySelector('.button-container');
             const containerRect = container.getBoundingClientRect();
-            
+
             const maxX = containerRect.width - noButton.offsetWidth;
             const maxY = containerRect.height - noButton.offsetHeight;
-            
+
             const newX = Math.random() * maxX;
             const newY = Math.random() * maxY;
-            
+
             noButton.style.position = 'absolute';
             noButton.style.left = newX + 'px';
             noButton.style.top = newY + 'px';
-            
-            // Add some playful messages
+
             const messages = [
-                "Nope! Try again! 😄",
-                "Still no! 😜",
-                "Getting warmer... just kidding! 😂",
-                "You can't catch me! 🏃‍♂️",
-                "How about that Yes button instead? 😉"
+                "Nope! Try again!",
+                "Still no!",
+                "Getting warmer... just kidding!",
+                "You can't catch me!",
+                "How about that Yes button instead?"
             ];
-            
+
             if (Math.random() > 0.7) {
                 showTempMessage(messages[Math.floor(Math.random() * messages.length)]);
             }
@@ -319,12 +304,12 @@
         function handleNoClick() {
             noButtonClickCount++;
             const sadMessages = [
-                "Aww, really? 🥺 Maybe reconsider?",
+                "Aww, really? Maybe reconsider?",
                 "My heart is breaking... 💔 One more chance?",
-                "But we could have so much fun! 😢",
-                "I promise I'll be the best date ever! 🙏"
+                "But we could have so much fun!",
+                "I promise I'll be the best date ever!"
             ];
-            
+
             showTempMessage(sadMessages[Math.min(noButtonClickCount - 1, sadMessages.length - 1)]);
         }
 
@@ -345,7 +330,7 @@
                 pointer-events: none;
                 z-index: 1000;
             `;
-            
+
             const style = document.createElement('style');
             style.textContent = `
                 @keyframes fadeInOut {
@@ -355,7 +340,7 @@
                 }
             `;
             document.head.appendChild(style);
-            
+
             document.querySelector('.container').appendChild(tempMsg);
             setTimeout(() => {
                 tempMsg.remove();
@@ -367,17 +352,26 @@
         yesButton.addEventListener('click', () => {
             mainContent.style.display = 'none';
             successContent.style.display = 'block';
-            
+
             // Create confetti explosion
             createConfetti();
-            
-            // Create emoji rain
-            createEmojiRain();
-            
+
             // Add sparkles
             createSparkles();
-            
-            // Play success sound (visual feedback)
+
+            // Show Image after "Yes"
+            const loveImage = document.createElement('img');
+            loveImage.src = 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80';
+            loveImage.alt = 'Love';
+            loveImage.style.maxWidth = '100%';
+            loveImage.style.borderRadius = '15px';
+            loveImage.style.marginTop = '20px';
+            // Make sure to NOT add duplicate images if button is clicked again
+            if (!successContent.querySelector('img')) {
+                successContent.appendChild(loveImage);
+            }
+
+            // Play success sound (visual feedback, optional)
             document.body.style.animation = 'none';
             document.body.style.background = 'linear-gradient(-45deg, #ff9a9e, #fad0c4, #a8edea, #fed6e3)';
             document.body.style.backgroundSize = '400% 400%';
@@ -389,7 +383,6 @@
 
         function createConfetti() {
             const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#ffa502', '#ff6348', '#a55eea'];
-            
             for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
@@ -399,27 +392,9 @@
                     confetti.style.animationDelay = Math.random() * 2 + 's';
                     confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
                     document.body.appendChild(confetti);
-                    
+
                     setTimeout(() => confetti.remove(), 5000);
                 }, i * 50);
-            }
-        }
-
-        function createEmojiRain() {
-            const emojis = ['💕', '💖', '💗', '💓', '💝', '❤️', '🌹', '✨', '🥰', '😍'];
-            
-            for (let i = 0; i < 30; i++) {
-                setTimeout(() => {
-                    const emoji = document.createElement('div');
-                    emoji.className = 'emoji';
-                    emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-                    emoji.style.left = Math.random() * 100 + 'vw';
-                    emoji.style.animationDelay = Math.random() * 2 + 's';
-                    emoji.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                    document.body.appendChild(emoji);
-                    
-                    setTimeout(() => emoji.remove(), 6000);
-                }, i * 100);
             }
         }
 
@@ -432,7 +407,7 @@
                     sparkle.style.top = Math.random() * 100 + 'vh';
                     sparkle.style.animationDelay = Math.random() * 1 + 's';
                     document.body.appendChild(sparkle);
-                    
+
                     setTimeout(() => sparkle.remove(), 2000);
                 }, i * 200);
             }
@@ -441,20 +416,38 @@
         // Easter egg: Konami code for extra effects
         let konamiCode = [];
         const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
-        
+
         document.addEventListener('keydown', (e) => {
             konamiCode.push(e.code);
             if (konamiCode.length > konamiSequence.length) {
                 konamiCode.shift();
             }
-            
             if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
-                showTempMessage("🎮 Konami code activated! Extra love incoming! 💕");
+                showTempMessage("🎮 Konami code activated! Extra love incoming!");
                 createConfetti();
+                // Still allow emoji rain for Konami code
                 createEmojiRain();
                 konamiCode = [];
             }
         });
+
+        // Emoji Rain (only enabled with Konami code now)
+        function createEmojiRain() {
+            const emojis = ['💕', '💖', '💗', '💓', '💝', '❤️', '🌹', '✨', '🥰', '😍'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji';
+                    emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + 'vw';
+                    emoji.style.animationDelay = Math.random() * 2 + 's';
+                    emoji.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(emoji);
+
+                    setTimeout(() => emoji.remove(), 6000);
+                }, i * 100);
+            }
+        }
     </script>
 </body>
 </html>
