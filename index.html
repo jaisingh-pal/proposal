@@ -5,12 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Special Question ✨</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(-45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
@@ -27,7 +21,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating hearts background */
         .heart {
             position: absolute;
             color: rgba(255, 182, 193, 0.6);
@@ -35,7 +28,6 @@
             animation: float 6s ease-in-out infinite;
             pointer-events: none;
         }
-
         @keyframes float {
             0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
             10% { opacity: 1; }
@@ -71,16 +63,17 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             animation: textGlow 2s ease-in-out infinite alternate;
         }
-
         @keyframes textGlow {
             0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
             100% { text-shadow: 2px 2px 20px rgba(255, 105, 180, 0.4); }
         }
 
-        /* Buttons */
         .button-container {
             margin: 30px 0;
-            position: relative;
+            display: flex;
+            justify-content: center;    /* Center horizontally */
+            align-items: center;        /* Center vertically, if needed */
+            gap: 30px;                  /* Space between buttons */
             height: 80px;
         }
 
@@ -98,7 +91,6 @@
             letter-spacing: 1px;
             width: 120px;
             height: 50px;
-            /* Ensure identical size for both buttons */
         }
 
         .button::before {
@@ -111,7 +103,6 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             transition: left 0.5s;
         }
-
         .button:hover::before {
             left: 100%;
         }
@@ -121,21 +112,17 @@
             color: white;
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
         }
-
         #yesButton:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(255, 107, 107, 0.6);
             background: linear-gradient(45deg, #ff5252, #ff6b6b);
         }
-
         #noButton {
             background: linear-gradient(45deg, #95a5a6, #bdc3c7);
             color: white;
             box-shadow: 0 8px 25px rgba(149, 165, 166, 0.4);
-            position: absolute;
-            transition: all 0.2s ease-out;
+            position: relative;
         }
-
         #noButton:hover {
             background: linear-gradient(45deg, #7f8c8d, #95a5a6);
         }
@@ -144,25 +131,21 @@
             display: none;
             animation: successAppear 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
-
         @keyframes successAppear {
             0% { opacity: 0; transform: scale(0.8) translateY(20px); }
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
-
         .success-title {
             font-size: 2.5em;
             color: #27ae60;
             margin-bottom: 20px;
             animation: bounce 2s infinite;
         }
-
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-10px); }
             60% { transform: translateY(-5px); }
         }
-
         .success-message {
             font-size: 1.3em;
             color: #2c3e50;
@@ -170,7 +153,6 @@
             line-height: 1.5;
         }
 
-        /* Confetti animation */
         .confetti {
             position: absolute;
             width: 10px;
@@ -179,13 +161,10 @@
             animation: confettiFall 3s linear infinite;
             pointer-events: none;
         }
-
         @keyframes confettiFall {
             0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
-
-        /* Sparkle effect */
         .sparkle {
             position: absolute;
             width: 4px;
@@ -195,10 +174,20 @@
             animation: sparkle 1.5s ease-in-out infinite;
             pointer-events: none;
         }
-
         @keyframes sparkle {
             0%, 100% { opacity: 0; transform: scale(0); }
             50% { opacity: 1; transform: scale(1); }
+        }
+        /* Emoji rain effect */
+        .emoji {
+            position: absolute;
+            font-size: 25px;
+            animation: emojiRain 4s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes emojiRain {
+            0% { transform: translateY(-100vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
         }
 
         /* Mobile responsiveness */
@@ -207,11 +196,9 @@
                 max-width: 90%;
                 padding: 30px 20px;
             }
-
             .question {
                 font-size: 1.8em;
             }
-
             .button {
                 padding: 12px 0;
                 font-size: 1.1em;
@@ -219,13 +206,14 @@
                 width: 110px;
                 height: 40px;
             }
+            .button-container {
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Floating hearts background -->
     <div class="hearts-container"></div>
-
     <div class="container">
         <div class="main-content">
             <h1 class="question">Do you love me?</h1>
@@ -234,7 +222,6 @@
                 <button class="button" id="noButton">No</button>
             </div>
         </div>
-
         <div class="success-content" id="successContent">
             <div class="success-title">🎉 Love you mere baachi! 🎉</div>
             <div class="success-message">
@@ -248,7 +235,6 @@
             <!-- Image will be injected here after clicking Yes -->
         </div>
     </div>
-
     <script>
         const noButton = document.getElementById('noButton');
         const yesButton = document.getElementById('yesButton');
@@ -265,7 +251,6 @@
             heart.style.animationDelay = Math.random() * 2 + 's';
             heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
             document.querySelector('.hearts-container').appendChild(heart);
-
             setTimeout(() => heart.remove(), 7000);
         }
         setInterval(createHeart, 800);
@@ -277,17 +262,13 @@
         function moveNoButton() {
             const container = document.querySelector('.button-container');
             const containerRect = container.getBoundingClientRect();
-
             const maxX = containerRect.width - noButton.offsetWidth;
             const maxY = containerRect.height - noButton.offsetHeight;
-
             const newX = Math.random() * maxX;
             const newY = Math.random() * maxY;
-
-            noButton.style.position = 'absolute';
+            noButton.style.position = 'relative';
             noButton.style.left = newX + 'px';
             noButton.style.top = newY + 'px';
-
             const messages = [
                 "Nope! Try again!",
                 "Still no!",
@@ -295,7 +276,6 @@
                 "You can't catch me!",
                 "How about that Yes button instead?"
             ];
-
             if (Math.random() > 0.7) {
                 showTempMessage(messages[Math.floor(Math.random() * messages.length)]);
             }
@@ -309,7 +289,6 @@
                 "But we could have so much fun!",
                 "I promise I'll be the best date ever!"
             ];
-
             showTempMessage(sadMessages[Math.min(noButtonClickCount - 1, sadMessages.length - 1)]);
         }
 
@@ -330,7 +309,6 @@
                 pointer-events: none;
                 z-index: 1000;
             `;
-
             const style = document.createElement('style');
             style.textContent = `
                 @keyframes fadeInOut {
@@ -340,7 +318,6 @@
                 }
             `;
             document.head.appendChild(style);
-
             document.querySelector('.container').appendChild(tempMsg);
             setTimeout(() => {
                 tempMsg.remove();
@@ -352,26 +329,18 @@
         yesButton.addEventListener('click', () => {
             mainContent.style.display = 'none';
             successContent.style.display = 'block';
-
-            // Create confetti explosion
             createConfetti();
-
-            // Add sparkles
+            createEmojiRain();  // Emoji rain enabled
             createSparkles();
-
-            // Show Image after "Yes"
             const loveImage = document.createElement('img');
             loveImage.src = 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80';
             loveImage.alt = 'Love';
             loveImage.style.maxWidth = '100%';
             loveImage.style.borderRadius = '15px';
             loveImage.style.marginTop = '20px';
-            // Make sure to NOT add duplicate images if button is clicked again
             if (!successContent.querySelector('img')) {
                 successContent.appendChild(loveImage);
             }
-
-            // Play success sound (visual feedback, optional)
             document.body.style.animation = 'none';
             document.body.style.background = 'linear-gradient(-45deg, #ff9a9e, #fad0c4, #a8edea, #fed6e3)';
             document.body.style.backgroundSize = '400% 400%';
@@ -392,7 +361,6 @@
                     confetti.style.animationDelay = Math.random() * 2 + 's';
                     confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
                     document.body.appendChild(confetti);
-
                     setTimeout(() => confetti.remove(), 5000);
                 }, i * 50);
             }
@@ -407,9 +375,24 @@
                     sparkle.style.top = Math.random() * 100 + 'vh';
                     sparkle.style.animationDelay = Math.random() * 1 + 's';
                     document.body.appendChild(sparkle);
-
                     setTimeout(() => sparkle.remove(), 2000);
                 }, i * 200);
+            }
+        }
+
+        function createEmojiRain() {
+            const emojis = ['💕', '💖', '💗', '💓', '💝', '❤️', '🌹', '✨', '🥰', '😍'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji';
+                    emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + 'vw';
+                    emoji.style.animationDelay = Math.random() * 2 + 's';
+                    emoji.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(emoji);
+                    setTimeout(() => emoji.remove(), 6000);
+                }, i * 100);
             }
         }
 
@@ -425,29 +408,10 @@
             if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
                 showTempMessage("🎮 Konami code activated! Extra love incoming!");
                 createConfetti();
-                // Still allow emoji rain for Konami code
                 createEmojiRain();
                 konamiCode = [];
             }
         });
-
-        // Emoji Rain (only enabled with Konami code now)
-        function createEmojiRain() {
-            const emojis = ['💕', '💖', '💗', '💓', '💝', '❤️', '🌹', '✨', '🥰', '😍'];
-            for (let i = 0; i < 30; i++) {
-                setTimeout(() => {
-                    const emoji = document.createElement('div');
-                    emoji.className = 'emoji';
-                    emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-                    emoji.style.left = Math.random() * 100 + 'vw';
-                    emoji.style.animationDelay = Math.random() * 2 + 's';
-                    emoji.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                    document.body.appendChild(emoji);
-
-                    setTimeout(() => emoji.remove(), 6000);
-                }, i * 100);
-            }
-        }
     </script>
 </body>
 </html>
