@@ -24,15 +24,9 @@
     }
 
     @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     /* Floating hearts */
@@ -45,21 +39,10 @@
     }
 
     @keyframes float {
-      0%,
-      100% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100px) rotate(360deg);
-        opacity: 0;
-      }
+      0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
     }
 
     .container {
@@ -80,12 +63,8 @@
     }
 
     @keyframes containerPulse {
-      0% {
-        transform: translate(-50%, -50%) scale(1);
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(1.02);
-      }
+      0% { transform: translate(-50%, -50%) scale(1); }
+      100% { transform: translate(-50%, -50%) scale(1.02); }
     }
 
     .question {
@@ -97,17 +76,12 @@
     }
 
     @keyframes textGlow {
-      0% {
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      100% {
-        text-shadow: 2px 2px 20px rgba(255, 105, 180, 0.4);
-      }
+      0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
+      100% { text-shadow: 2px 2px 20px rgba(255, 105, 180, 0.4); }
     }
 
-    /* Buttons container */
     .button-container {
-      position: relative; /* important for button absolute positioning */
+      position: relative;
       margin: 30px 0;
       display: flex;
       justify-content: center;
@@ -169,9 +143,9 @@
       background: linear-gradient(45deg, #95a5a6, #bdc3c7);
       color: white;
       box-shadow: 0 8px 25px rgba(149, 165, 166, 0.4);
-      position: absolute; /* important for movement */
+      position: absolute;
       top: 0;
-      left: 150px; /* initial position to right of yes button */
+      left: 150px;
       transition: all 0.2s ease-out;
     }
 
@@ -185,14 +159,8 @@
     }
 
     @keyframes successAppear {
-      0% {
-        opacity: 0;
-        transform: scale(0.8) translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
+      0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     .success-title {
@@ -203,19 +171,9 @@
     }
 
     @keyframes bounce {
-      0%,
-      20%,
-      50%,
-      80%,
-      100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-10px);
-      }
-      60% {
-        transform: translateY(-5px);
-      }
+      0%,20%,50%,80%,100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
     }
 
     .success-message {
@@ -235,14 +193,8 @@
     }
 
     @keyframes confettiFall {
-      0% {
-        transform: translateY(-100vh) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(720deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
     }
 
     .sparkle {
@@ -256,15 +208,8 @@
     }
 
     @keyframes sparkle {
-      0%,
-      100% {
-        opacity: 0;
-        transform: scale(0);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1);
-      }
+      0%,100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
     }
 
     .emoji {
@@ -275,17 +220,20 @@
     }
 
     @keyframes emojiRain {
-      0% {
-        transform: translateY(-100vh);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
+      0% { transform: translateY(-100vh); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
     }
 
-    /* Mobile responsiveness */
+    /* Limit success image size */
+    .limited-img {
+      max-width: 200px;
+      max-height: 200px;
+      width: auto;
+      height: auto;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
     @media (max-width: 600px) {
       .container {
         max-width: 90%;
@@ -309,11 +257,14 @@
         left: 0 !important;
         top: 0 !important;
       }
+      .limited-img {
+        max-width: 150px;
+        max-height: 150px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Floating hearts background -->
   <div class="hearts-container"></div>
 
   <div class="container">
@@ -332,12 +283,7 @@
         You are my everything and my forever!<br />
         <strong>I'm the luckiest person in the world to have your love!</strong>
       </div>
-      <div
-        style="font-size: 3em; margin: 20px 0; animation: bounce 1s infinite"
-      >
-        😍💖✨🥰💫
-      </div>
-      <!-- Image will be injected here after clicking Yes -->
+      <div style="font-size: 3em; margin: 20px 0; animation: bounce 1s infinite">😍💖✨🥰💫</div>
     </div>
   </div>
 
@@ -348,7 +294,7 @@
     const successContent = document.getElementById('successContent');
     let noButtonClickCount = 0;
 
-    // Create floating hearts
+    // Floating hearts animation
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
@@ -361,7 +307,7 @@
     }
     setInterval(createHeart, 800);
 
-    // No button evasion - now moves more widely!
+    // No button evasion - moves widely!
     noButton.addEventListener('mouseenter', moveNoButton);
     noButton.addEventListener('click', handleNoClick);
 
@@ -371,11 +317,8 @@
       // Expanded movement range (+50px)
       const maxX = containerRect.width - noButton.offsetWidth + 50;
       const maxY = containerRect.height - noButton.offsetHeight + 50;
-
-      // Allow negative positions so it can move around more liberally
       const newX = Math.random() * maxX - 25;
       const newY = Math.random() * maxY - 25;
-
       noButton.style.position = 'absolute';
       noButton.style.left = newX + 'px';
       noButton.style.top = newY + 'px';
@@ -438,27 +381,23 @@
       }, 2000);
     }
 
-    // Yes button success
+    // When "Yes" is clicked
     yesButton.addEventListener('click', () => {
       mainContent.style.display = 'none';
       successContent.style.display = 'block';
       createConfetti();
-      createEmojiRain(); // emoji rain enabled here
+      createEmojiRain();
       createSparkles();
 
-     // Add image under success message
-if (!successContent.querySelector('img')) {
-  const loveImage = document.createElement('img');
-  loveImage.src = 'image_1.JPG'; // Use your actual image file name here
-  loveImage.alt = 'Love';
-  loveImage.style.maxWidth = '100%';
-  loveImage.style.borderRadius = '15px';
-  loveImage.style.marginTop = '20px';
-  successContent.appendChild(loveImage);
-}
+      // Add your image from the same repository, LIMITING SIZE
+      if (!successContent.querySelector('img')) {
+        const loveImage = document.createElement('img');
+        loveImage.src = 'myphoto.jpg'; // Make sure 'myphoto.jpg' is in the same directory as your HTML
+        loveImage.alt = 'Love';
+        loveImage.className = 'limited-img';
+        successContent.appendChild(loveImage);
+      }
 
-
-      // Change background softly
       document.body.style.animation = 'none';
       document.body.style.background =
         'linear-gradient(-45deg, #ff9a9e, #fad0c4, #a8edea, #fed6e3)';
@@ -509,16 +448,7 @@ if (!successContent.querySelector('img')) {
 
     function createEmojiRain() {
       const emojis = [
-        '💕',
-        '💖',
-        '💗',
-        '💓',
-        '💝',
-        '❤️',
-        '🌹',
-        '✨',
-        '🥰',
-        '😍',
+        '💕','💖','💗','💓','💝','❤️','🌹','✨','🥰','😍',
       ];
       for (let i = 0; i < 30; i++) {
         setTimeout(() => {
@@ -534,7 +464,7 @@ if (!successContent.querySelector('img')) {
       }
     }
 
-    // Konami code easter egg (optional)
+    // Konami code easter egg
     let konamiCode = [];
     const konamiSequence = [
       'ArrowUp',
